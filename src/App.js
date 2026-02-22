@@ -73,15 +73,27 @@ export default function App() {
     <>
       {/* FULLSCREEN INTRO LOGO */}
       {showIntro && (
-        <div className="fixed inset-0 bg-gradient-to-br from-emerald-50 to-teal-100 flex items-center justify-center z-[100] transition-all duration-1000">
-          <img
-            src="/logo.png"
-            alt="Company Logo"
-            className="h-40 w-auto object-contain transition-all duration-1000 animate-pulse"
-          />
-        </div>
-      )}
+  <div className="fixed inset-0 bg-black flex items-center justify-center overflow-hidden z-[100]">
 
+    {/* GREEN GROWING COVER EFFECT */}
+    <div className="absolute w-[200%] h-[200%] bg-emerald-500 rounded-full animate-growGreen opacity-30 blur-3xl"></div>
+
+    {/* FLOATING CARBON PARTICLES */}
+    <div className="absolute inset-0">
+      <div className="absolute w-2 h-2 bg-emerald-400 rounded-full animate-float1 top-1/4 left-1/3"></div>
+      <div className="absolute w-3 h-3 bg-emerald-300 rounded-full animate-float2 top-2/3 left-1/4"></div>
+      <div className="absolute w-2 h-2 bg-emerald-500 rounded-full animate-float3 top-1/2 left-2/3"></div>
+    </div>
+
+    {/* BIG LOGO */}
+    <img
+      src="/logo.png"
+      alt="Company Logo"
+      className="h-52 w-auto object-contain animate-logoReveal relative z-10"
+    />
+  </div>
+)}
+        
       {/* MAIN PAGE */}
       <div
         className={`min-h-screen bg-gradient-to-br from-emerald-50 to-teal-100 flex items-center justify-center p-4 font-sans antialiased transition-opacity duration-700 ${
@@ -182,4 +194,5 @@ export default function App() {
     </>
   );
 }
+
 
