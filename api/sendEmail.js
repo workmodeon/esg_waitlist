@@ -1,3 +1,45 @@
+const https = require('https');
+
+function postJson(url, payload, headers) {
+  return new Promise((resolve, reject) => {
+    const parsed = new URL(url);
+    const data = JSON.stringify(payload);
+
+    const options = {
+      hostname: parsed.hostname,
+      path: parsed.pathname + parsed.search,
+      method: 'POST',
+      headers: Object.assign(
+        {
+          'Content-Type': 'application/json',
+          'Content-Length': Buffer.byteLength(data),
+        },
+        headers || {}
+      ),
+    };
+
+    const request = https.request(options, (response) => {
+      let body = '';
+      response.on('data', (chunk) => {
+        body += chunk;
+      });
+      response.on('end', () => {
+        let json = {};
+        try {
+          json = body ? JSON.parse(body) : {};
+        } catch (_err) {
+          json = { raw: body };
+        }
+        resolve({ statusCode: response.statusCode, body: json });
+      });
+    });
+
+    request.on('error', reject);
+    request.write(data);
+    request.end();
+  });
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -14,16 +56,12 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const response = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
+    const resendResponse = await postJson(
+      'https://api.resend.com/emails',
+      {
         from: 'Zissions <suhasani@zissions.com>',
         to: [email],
-        subject: 'You’re on the Zissions ESG Waitlist 🌱',
+        subject: "You're on the Zissions ESG Waitlist",
         html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #1f2937; padding: 20px;">
           
@@ -46,18 +84,26 @@ module.exports = async function handler(req, res) {
 
         </div>
       `,
-      }),
-    });
+      },
+      {
+        Authorization: 'Bearer ' + process.env.RESEND_API_KEY,
+      }
+    );
 
-    const result = await response.json();
-
-    if (!response.ok) {
-      return res.status(500).json({ error: result?.message || 'Resend failed to send email' });
+    if (resendResponse.statusCode < 200 || resendResponse.statusCode >= 300) {
+      return res.status(500).json({
+        error: resendResponse.body && resendResponse.body.message
+          ? resendResponse.body.message
+          : 'Resend failed to send email',
+      });
     }
 
-    return res.status(200).json({ success: true, id: result?.id || null });
+    return res.status(200).json({
+      success: true,
+      id: resendResponse.body && resendResponse.body.id ? resendResponse.body.id : null,
+    });
   } catch (error) {
-    const message = error?.message || 'Unexpected server error while sending email';
+    const message = error && error.message ? error.message : 'Unexpected server error while sending email';
     console.error('sendEmail error:', message, error);
     return res.status(500).json({ error: message });
   }
