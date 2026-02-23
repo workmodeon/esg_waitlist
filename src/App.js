@@ -172,7 +172,7 @@ export default function App() {
                   </div>
                   <div className="relative">
                     <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                    <input required type="date" name="demoDate" min={new Date().toISOString().split('T')[0]} onChange={handleInputChange} className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:border-emerald-500 outline-none transition-all" />
+                    <input required type="date" name="demoDate" min={new Date().toISOString().split('T')[0]} placeholder="Your availability" onChange={handleInputChange} className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:border-emerald-500 outline-none transition-all" />
                   </div>
                 </div>
 
@@ -189,3 +189,4 @@ export default function App() {
     </div>
   );
 }
+
