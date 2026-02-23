@@ -1,10 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { 
   Building2, User, Mail, Calendar, CheckCircle2, 
-  X, Loader2, ArrowRight, Clock
+  X, Loader2, ArrowRight, Clock, Leaf, TreePine 
 } from 'lucide-react';
 
-// YOUR LIVE GOOGLE SHEET URL
 const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyo0XDNh7R2oWGsWvM7Gi-L9VUuMVjCFcyvZJxnf7XvR1Bk-1QvLbzDdwMRR4o50uqiBQ/exec"; 
 
 export default function App() {
@@ -20,7 +19,7 @@ export default function App() {
     demoDate: ''
   });
 
-  // Countdown Logic: 51 days from Feb 22, 2026 is April 14, 2026
+  // Countdown Logic
   const daysLeft = useMemo(() => {
     const targetDate = new Date("2026-04-14T00:00:00"); 
     const now = new Date();
@@ -46,7 +45,7 @@ export default function App() {
           setIsSuccess(false);
           setFormData({ companyName: '', personName: '', email: '', demoDate: '' });
         }, 500);
-      }, 4000);
+      }, 3000);
     } catch (err) {
       setError("Connection error. Please try again.");
     } finally {
@@ -60,74 +59,128 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-100 flex items-center justify-center p-4 font-sans antialiased">
-      <div className="text-center z-10 max-w-2xl px-4">
-        <div className="mb-8">
-          <img
-            src="/logo.png"
-            alt="Company Logo"
-            className="h-16 w-auto mx-auto object-contain"
-          />
-        </div>
-       <p className="text-xl text-emerald-800/80 mb-8">Join the exclusive list of companies automating their sustainability future with Zissions.</p>       
-        <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full font-bold mb-8 animate-bounce">
-          <Clock size={18} />
-          <span>Only {daysLeft} days left for early access!</span>
-        </div>
-
-        <p className="text-xl text-emerald-800/80 mb-8">
-         Join the exclusive list of companies automating their sustainability future with <span className="font-bold">Zissions</span>.
-        </p>
+    <div className="relative min-h-screen w-full overflow-hidden font-sans antialiased flex items-center justify-center bg-emerald-950">
+      
+      {/* --- CLASSY ANIMATED BACKDROP --- */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 animate-slow-zoom opacity-60 bg-cover bg-center"
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&q=80&w=2000')` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/80 via-emerald-950/20 to-emerald-950" />
         
-        <button onClick={() => setIsOpen(true)} className="group px-10 py-5 font-bold text-white bg-emerald-600 rounded-2xl hover:bg-emerald-700 shadow-lg flex items-center gap-2 mx-auto transition-all hover:scale-105 active:scale-95">
-          Join the Waitlist <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-        </button>
+        {/* Floating Particles */}
+        <div className="absolute inset-0 opacity-30">
+            {[...Array(5)].map((_, i) => (
+                <div key={i} className="absolute bg-white rounded-full blur-2xl animate-blob"
+                    style={{
+                        width: Math.random() * 200 + 100 + 'px',
+                        height: Math.random() * 200 + 100 + 'px',
+                        left: Math.random() * 100 + '%',
+                        top: Math.random() * 100 + '%',
+                        animationDelay: i * 2 + 's',
+                    }}
+                />
+            ))}
+        </div>
       </div>
 
+      {/* --- MAIN CONTENT --- */}
+      <main className="relative z-10 w-full max-w-4xl px-6 text-center">
+        {/* LOGO */}
+        <div className="mb-10 animate-in fade-in duration-1000">
+          <img 
+            src="/logo.png" 
+            alt="Zissions Logo" 
+            className="h-16 w-auto mx-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]" 
+          />
+        </div>
+
+        <header className="mb-12 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200">
+          <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 backdrop-blur-md text-emerald-300 text-sm font-medium">
+             <Leaf size={14} className="animate-bounce" />
+             <span>The Future of Sustainability Automation</span>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+            Nurturing a <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-200">
+                Greener Future
+            </span>
+          </h1>
+          
+          <p className="text-lg md:text-xl text-emerald-100/70 max-w-2xl mx-auto leading-relaxed mb-10">
+            Join the exclusive list of companies automating their sustainability future with <span className="text-white font-semibold">Zissions</span>.
+          </p>
+
+          <div className="flex flex-col items-center gap-8">
+            <button 
+              onClick={() => setIsOpen(true)}
+              className="group relative px-10 py-5 bg-emerald-500 hover:bg-emerald-400 text-emerald-950 font-bold text-lg rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(16,185,129,0.3)]"
+            >
+              <span className="flex items-center gap-2">
+                Join the Waitlist <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              </span>
+            </button>
+
+            <div className="flex items-center gap-6 text-emerald-400/60 font-medium text-sm">
+               <div className="flex items-center gap-2">
+                  <Clock size={16} />
+                  <span>Only {daysLeft} days left for early access!</span>
+               </div>
+            </div>
+          </div>
+        </header>
+      </main>
+
+      {/* --- MODAL --- */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-emerald-950/40 backdrop-blur-md transition-all">
-          <div className="bg-white w-full max-w-lg rounded-[2.5rem] shadow-2xl p-8 relative overflow-hidden animate-in zoom-in duration-300">
-            <button onClick={() => setIsOpen(false)} className="absolute top-6 right-6 text-slate-400 hover:text-slate-600 transition-colors">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-emerald-950/60 backdrop-blur-xl animate-in fade-in duration-500" onClick={() => setIsOpen(false)} />
+          
+          <div className="relative bg-white/95 backdrop-blur-md w-full max-w-md rounded-[2.5rem] shadow-2xl p-10 overflow-hidden animate-in zoom-in-95 duration-300">
+            <button onClick={() => setIsOpen(false)} className="absolute top-8 right-8 text-slate-400 hover:text-emerald-600 transition-colors">
               <X size={24} />
             </button>
             
             {isSuccess ? (
-              <div className="py-12 text-center">
-                <CheckCircle2 size={64} className="text-emerald-600 mx-auto mb-6" />
-                <h2 className="text-3xl font-bold text-emerald-950 mb-2">Success!</h2>
-                <p className="text-emerald-700 text-lg">You're on the list. Check your inbox soon!</p>
+              <div className="py-12 text-center animate-in zoom-in duration-500">
+                <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle2 size={40} className="text-emerald-600" />
+                </div>
+                <h2 className="text-3xl font-bold text-emerald-950 mb-3">Success!</h2>
+                <p className="text-emerald-700">You're on the list. Check your inbox soon!</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <h2 className="text-3xl font-bold text-slate-900">Secure Your Spot</h2>
-                  <p className="text-emerald-600 text-sm font-semibold mt-1 flex items-center gap-1">
+                  <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Secure Your Spot</h2>
+                  <p className="text-emerald-600 text-sm font-semibold mt-2 flex items-center gap-1">
                     <Clock size={14} /> Early access closes in {daysLeft} days.
                   </p>
                 </div>
                 
-                <div className="space-y-4">
-                  <div className="relative">
-                    <Building2 className="absolute left-4 top-4 text-slate-400" size={20} />
-                    <input required name="companyName" placeholder="Company Name" onChange={handleInputChange} className="w-full pl-12 pr-4 py-4 border-2 border-slate-100 rounded-2xl focus:border-emerald-500 outline-none transition-all text-slate-800" />
+                <div className="space-y-3">
+                  <div className="relative group">
+                    <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-500 transition-colors" size={18} />
+                    <input required name="companyName" placeholder="Company Name" onChange={handleInputChange} className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:bg-white focus:border-emerald-500 outline-none transition-all" />
                   </div>
-                  <div className="relative">
-                    <User className="absolute left-4 top-4 text-slate-400" size={20} />
-                    <input required name="personName" placeholder="Your Name" onChange={handleInputChange} className="w-full pl-12 pr-4 py-4 border-2 border-slate-100 rounded-2xl focus:border-emerald-500 outline-none transition-all text-slate-800" />
+                  <div className="relative group">
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-500 transition-colors" size={18} />
+                    <input required name="personName" placeholder="Your Name" onChange={handleInputChange} className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:bg-white focus:border-emerald-500 outline-none transition-all" />
                   </div>
-                  <div className="relative">
-                    <Mail className="absolute left-4 top-4 text-slate-400" size={20} />
-                    <input required type="email" name="email" placeholder="Official Email" onChange={handleInputChange} className="w-full pl-12 pr-4 py-4 border-2 border-slate-100 rounded-2xl focus:border-emerald-500 outline-none transition-all text-slate-800" />
+                  <div className="relative group">
+                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-500 transition-colors" size={18} />
+                    <input required type="email" name="email" placeholder="Official Email" onChange={handleInputChange} className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:bg-white focus:border-emerald-500 outline-none transition-all" />
                   </div>
-                  <div className="relative">
-                    <Calendar className="absolute left-4 top-4 text-slate-400" size={20} />
-                    <input required type="date" name="demoDate" min={new Date().toISOString().split('T')[0]} onChange={handleInputChange} className="w-full pl-12 pr-4 py-4 border-2 border-slate-100 rounded-2xl focus:border-emerald-500 outline-none transition-all text-slate-800 cursor-pointer" />
+                  <div className="relative group">
+                    <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-500 transition-colors" size={18} />
+                    <input required type="date" name="demoDate" min={new Date().toISOString().split('T')[0]} onChange={handleInputChange} className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:bg-white focus:border-emerald-500 outline-none transition-all cursor-pointer" />
                   </div>
                 </div>
 
-                {error && <p className="text-red-500 text-sm font-medium">{error}</p>}
+                {error && <p className="text-red-500 text-xs font-semibold">{error}</p>}
 
-                <button type="submit" disabled={isSubmitting} className="w-full py-5 bg-emerald-600 text-white font-bold rounded-2xl hover:bg-emerald-700 transition-all shadow-lg flex items-center justify-center gap-2 active:scale-[0.98]">
+                <button type="submit" disabled={isSubmitting} className="w-full py-5 bg-emerald-600 text-white font-bold rounded-2xl hover:bg-emerald-700 transition-all shadow-xl flex items-center justify-center gap-2 disabled:opacity-70">
                   {isSubmitting ? <Loader2 className="animate-spin" /> : "Reserve Early Access"}
                 </button>
               </form>
@@ -138,8 +191,3 @@ export default function App() {
     </div>
   );
 }
-
-
-
-
-
