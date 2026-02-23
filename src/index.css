@@ -65,3 +65,60 @@
 .animate-float3 {
   animation: float3 2s ease-in-out forwards;
 }
+/* FOREST FADE IN */
+@keyframes forestReveal {
+  0% { opacity: 0; filter: blur(20px); }
+  100% { opacity: 0.25; filter: blur(6px); }
+}
+.animate-forestReveal {
+  animation: forestReveal 2.5s ease-out forwards;
+}
+
+/* EARTH GRID MOVEMENT */
+@keyframes gridMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 60px 60px; }
+}
+.animate-gridMove {
+  animation: gridMove 10s linear infinite;
+}
+
+/* TREE GROWING */
+@keyframes treeGrow {
+  0% { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+.animate-treeGrow {
+  animation: treeGrow 2s ease-out forwards;
+}
+
+/* LOGO REVEAL */
+@keyframes logoReveal {
+  0% { transform: scale(2); opacity: 0; }
+  60% { opacity: 1; }
+  100% { transform: scale(1); }
+}
+.animate-logoReveal {
+  animation: logoReveal 2.2s ease-out forwards;
+}
+
+/* LEAF PARTICLES */
+.leaf {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+@keyframes leafFloat {
+  0% { transform: translateY(40px); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-60px); opacity: 0; }
+}
+
+.animate-leaf1 { animation: leafFloat 2s ease-out forwards; animation-delay: 0.2s; }
+.animate-leaf2 { animation: leafFloat 2s ease-out forwards; animation-delay: 0.4s; }
+.animate-leaf3 { animation: leafFloat 2s ease-out forwards; animation-delay: 0.6s; }
+.animate-leaf4 { animation: leafFloat 2s ease-out forwards; animation-delay: 0.8s; }
