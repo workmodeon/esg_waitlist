@@ -71,25 +71,41 @@ export default function App() {
 
   return (
     <>
-      {/* FULLSCREEN INTRO LOGO */}
-      {showIntro && (
-  <div className="fixed inset-0 bg-black flex items-center justify-center overflow-hidden z-[100]">
+{showIntro && (
+  <div className="fixed inset-0 bg-black overflow-hidden flex items-center justify-center z-[100]">
 
-    {/* GREEN GROWING COVER EFFECT */}
-    <div className="absolute w-[200%] h-[200%] bg-emerald-500 rounded-full animate-growGreen opacity-30 blur-3xl"></div>
+    {/* BLURRED FOREST BACKGROUND */}
+    <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1600')] bg-cover bg-center opacity-0 animate-forestReveal"></div>
 
-    {/* FLOATING CARBON PARTICLES */}
+    {/* EARTH GRID OVERLAY */}
+    <div className="absolute inset-0 opacity-10 animate-gridMove"
+      style={{
+        backgroundImage: `
+          linear-gradient(rgba(16,185,129,0.4) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(16,185,129,0.4) 1px, transparent 1px)
+        `,
+        backgroundSize: '60px 60px'
+      }}
+    ></div>
+
+    {/* TREE SILHOUETTE GROWING */}
+    <div className="absolute bottom-0 w-full flex justify-center">
+      <div className="w-40 h-60 bg-emerald-800 rounded-t-full origin-bottom animate-treeGrow"></div>
+    </div>
+
+    {/* LEAF PARTICLES FORMING LOGO */}
     <div className="absolute inset-0">
-      <div className="absolute w-2 h-2 bg-emerald-400 rounded-full animate-float1 top-1/4 left-1/3"></div>
-      <div className="absolute w-3 h-3 bg-emerald-300 rounded-full animate-float2 top-2/3 left-1/4"></div>
-      <div className="absolute w-2 h-2 bg-emerald-500 rounded-full animate-float3 top-1/2 left-2/3"></div>
+      <div className="leaf left-[40%] top-[55%] animate-leaf1"></div>
+      <div className="leaf left-[50%] top-[60%] animate-leaf2"></div>
+      <div className="leaf left-[60%] top-[50%] animate-leaf3"></div>
+      <div className="leaf left-[45%] top-[45%] animate-leaf4"></div>
     </div>
 
     {/* BIG LOGO */}
     <img
       src="/logo.png"
       alt="Company Logo"
-      className="h-52 w-auto object-contain animate-logoReveal relative z-10"
+      className="h-52 w-auto object-contain relative z-10 animate-logoReveal"
     />
   </div>
 )}
@@ -194,5 +210,6 @@ export default function App() {
     </>
   );
 }
+
 
 
