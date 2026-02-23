@@ -4,10 +4,6 @@ import {
   X, Loader2, ArrowRight, Clock, Leaf 
 } from 'lucide-react';
 
-
-
-const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyo0XDNh7R2oWGsWvM7Gi-L9VUuMVjCFcyvZJxnf7XvR1Bk-1QvLbzDdwMRR4o50uqiBQ/exec"; 
-
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -51,14 +47,6 @@ export default function App() {
       }
       throw new Error(message);
     }
-
-    // 2️⃣ Send Data to Google Sheet
-    await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    });
 
     setIsSuccess(true);
 
