@@ -69,14 +69,17 @@ export default function App() {
             className="h-16 w-auto mx-auto object-contain"
           />
         </div>
-        <h1 className="text-5xl font-extrabold mb-4 text-emerald-950 leading-tight">ESG Automation Waitlist</h1>
-        
+<h1 className="text-5xl font-extrabold mb-4 text-emerald-950 leading-tight">
+  ESG Automation <span className="underline">Waitlist</span>
+</h1>        
         <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full font-bold mb-8 animate-bounce">
           <Clock size={18} />
           <span>Only {daysLeft} days left for early access!</span>
         </div>
 
-        <p className="text-xl text-emerald-800/80 mb-8">Join the exclusive list of companies automating their sustainability future.</p>
+        <p className="text-xl text-emerald-800/80 mb-8">
+         Join the exclusive list of companies automating their sustainability future with <span className="font-bold">Zissions</span>.
+        </p>
         
         <button onClick={() => setIsOpen(true)} className="group px-10 py-5 font-bold text-white bg-emerald-600 rounded-2xl hover:bg-emerald-700 shadow-lg flex items-center gap-2 mx-auto transition-all hover:scale-105 active:scale-95">
           Join the Waitlist <ArrowRight className="group-hover:translate-x-1 transition-transform" />
@@ -137,6 +140,7 @@ export default function App() {
     </div>
   );
 }
+
 
 
 
