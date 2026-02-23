@@ -3,7 +3,11 @@ import {
   Building2, User, Mail, Calendar, CheckCircle2, 
   X, Loader2, ArrowRight, Clock, Leaf 
 } from 'lucide-react';
-
+await fetch('/api/sendEmail', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(formData)
+});
 const GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyo0XDNh7R2oWGsWvM7Gi-L9VUuMVjCFcyvZJxnf7XvR1Bk-1QvLbzDdwMRR4o50uqiBQ/exec"; 
 
 export default function App() {
@@ -198,3 +202,4 @@ export default function App() {
     </div>
   );
 }
+
