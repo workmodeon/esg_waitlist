@@ -69,9 +69,7 @@ export default function App() {
             className="h-16 w-auto mx-auto object-contain"
           />
         </div>
-<h1 className="text-5xl font-extrabold mb-4 text-emerald-950 leading-tight">
-  ESG Automation <span className="underline">Waitlist</span>
-</h1>        
+       <p className="text-xl text-emerald-800/80 mb-8">Join the exclusive list of companies automating their sustainability future with Zissions.</p>       
         <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full font-bold mb-8 animate-bounce">
           <Clock size={18} />
           <span>Only {daysLeft} days left for early access!</span>
@@ -140,6 +138,7 @@ export default function App() {
     </div>
   );
 }
+
 
 
 
