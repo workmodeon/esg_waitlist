@@ -4,18 +4,18 @@
 
 @layer base {
   body {
-    @apply bg-emerald-950 overflow-x-hidden;
+    @apply bg-emerald-950 antialiased;
   }
 }
 
-/* Cinematic Forest Zoom */
+/* Background Zoom Animation */
 @keyframes slow-zoom {
   0% { transform: scale(1); }
   50% { transform: scale(1.1); }
   100% { transform: scale(1); }
 }
 
-/* Organic Floating Particles */
+/* Floating Mist Animation */
 @keyframes blob {
   0% { transform: translate(0px, 0px) scale(1); }
   33% { transform: translate(30px, -50px) scale(1.1); }
@@ -24,18 +24,17 @@
 }
 
 .animate-slow-zoom {
-  animation: slow-zoom 25s ease-in-out infinite;
+  animation: slow-zoom 30s ease-in-out infinite;
 }
 
 .animate-blob {
-  animation: blob 10s infinite;
+  animation: blob 15s infinite;
 }
 
-/* Animation utilities for the modal and content */
+/* Modal and Content Animations */
 .animate-in {
-  animation-duration: 500ms;
+  animation-duration: 600ms;
   animation-fill-mode: forwards;
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .fade-in {
@@ -49,6 +48,6 @@
 }
 
 .slide-in-from-bottom-4 {
-  from { transform: translateY(1rem); opacity: 0; }
+  from { transform: translateY(1.5rem); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
