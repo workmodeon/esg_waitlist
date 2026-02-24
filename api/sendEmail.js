@@ -124,10 +124,12 @@ module.exports = async function handler(req, res) {
     );
 
     if (resendResponse.statusCode < 200 || resendResponse.statusCode >= 300) {
+      console.error('Resend API error:', resendResponse.statusCode, JSON.stringify(resendResponse.body));
       return res.status(500).json({
         error: resendResponse.body && resendResponse.body.message
           ? resendResponse.body.message
           : 'Resend failed to send email',
+        details: resendResponse.body,
       });
     }
 
