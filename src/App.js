@@ -115,14 +115,31 @@ export default function App() {
              <span>Join the Sustainability Revolution</span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight leading-tight">
-            Automate Your <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-100">
-                Sustainability Future <br/>
-              Emissions data ingestion, Carbon calculations, audit ready reporting, continuous scorecard tracking
-  
-            </span>
-          </h1>
+        <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight leading-tight">
+  Automate Your <br/>
+  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-100">
+    Sustainability Future
+  </span>
+</h1>
+
+<div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-lg md:text-2xl font-medium text-emerald-200">
+  <span className="flex items-center gap-2">
+    <span className="w-2 h-2 bg-emerald-300 rounded-full"></span>
+    Emissions Data Ingestion
+  </span>
+  <span className="flex items-center gap-2">
+    <span className="w-2 h-2 bg-emerald-300 rounded-full"></span>
+    Carbon Calculations
+  </span>
+  <span className="flex items-center gap-2">
+    <span className="w-2 h-2 bg-emerald-300 rounded-full"></span>
+    Audit-Ready Reporting
+  </span>
+  <span className="flex items-center gap-2">
+    <span className="w-2 h-2 bg-emerald-300 rounded-full"></span>
+    Continuous Scorecard Tracking
+  </span>
+</div>
           
           <p className="text-lg md:text-xl text-emerald-100/70 max-w-2xl mx-auto leading-relaxed mb-12">
             Join the exclusive list of companies scaling their green impact with <span className="text-emerald-400 font-semibold tracking-wide">ZISSIONS</span>.
@@ -219,6 +236,7 @@ export default function App() {
     </div>
   );
 }
+
 
 
 
