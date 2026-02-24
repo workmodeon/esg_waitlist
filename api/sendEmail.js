@@ -92,7 +92,7 @@ module.exports = async function handler(req, res) {
     const resendResponse = await postJson(
       'https://api.resend.com/emails',
       {
-        from: 'Zissions <suhasani@zissions.com>',
+        from: 'Zissions <suhasani.chouhan@zissions.com>',
         to: [email],
         subject: "You're on the Zissions ESG Waitlist",
         html: `
