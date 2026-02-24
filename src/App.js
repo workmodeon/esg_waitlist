@@ -118,13 +118,16 @@ export default function App() {
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight leading-tight">
             Automate Your <br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-100">
-                Sustainability Future
+                Sustainability Future <br/>
+              Emissions data ingestion, Carbon calculations, audit ready reporting, continuous scorecard tracking
+  
             </span>
           </h1>
           
           <p className="text-lg md:text-xl text-emerald-100/70 max-w-2xl mx-auto leading-relaxed mb-12">
             Join the exclusive list of companies scaling their green impact with <span className="text-emerald-400 font-semibold tracking-wide">ZISSIONS</span>.
-          </p>
+          <br
+              </p>
 
           <div className="flex flex-col items-center gap-6">
             <button 
@@ -216,5 +219,6 @@ export default function App() {
     </div>
   );
 }
+
 
 
